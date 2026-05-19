@@ -1,12 +1,436 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Priyadharshini C G — GenAI Content Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --teal: #0D6E6E;
+    --teal-light: #E1F5EE;
+    --teal-mid: #5DCAA5;
+    --dark: #111;
+    --gray: #555;
+    --light: #f7f7f5;
+    --white: #fff;
+    --border: #e5e5e0;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,247,245,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--teal); letter-spacing: -0.3px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 13px; font-weight: 500; color: var(--gray); letter-spacing: 0.3px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    min-height: 92vh;
+    padding: 0 5vw;
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #9FE1CB44 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 780px; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--teal-light); color: var(--teal);
+    font-size: 12px; font-weight: 500; letter-spacing: 0.5px;
+    padding: 4px 12px; border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--teal-mid); }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    line-height: 1.1;
+    color: var(--dark);
+    letter-spacing: -1px;
+    margin-bottom: 1.2rem;
+  }
+  h1 span { color: var(--teal); }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--gray);
+    max-width: 540px; margin-bottom: 2rem;
+    font-weight: 300; line-height: 1.8;
+  }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--teal); color: #fff;
+    padding: 11px 24px; border-radius: 8px;
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #0a5858; transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent; color: var(--teal);
+    border: 1.5px solid var(--teal);
+    padding: 10px 24px; border-radius: 8px;
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { background: var(--teal-light); transform: translateY(-1px); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3rem;
+    padding-top: 2rem; border-top: 1px solid var(--border);
+  }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 1.9rem; color: var(--teal); }
+  .stat-label { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+  /* SECTIONS */
+  section { padding: 5rem 5vw; }
+  section:nth-child(even) { background: var(--white); }
+  .section-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    letter-spacing: -0.5px; color: var(--dark);
+    margin-bottom: 2.5rem; line-height: 1.2;
+  }
+
+  /* SKILLS */
+  .skills-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skill-chip {
+    padding: 7px 16px; border-radius: 30px;
+    font-size: 13px; font-weight: 400; cursor: default;
+    transition: transform 0.15s;
+  }
+  .skill-chip:hover { transform: translateY(-2px); }
+  .chip-ai { background: var(--teal-light); color: var(--teal); border: 1px solid #9FE1CB; }
+  .chip-web { background: #E6F1FB; color: #185FA5; border: 1px solid #85B7EB; }
+  .chip-design { background: #FAEEDA; color: #854F0B; border: 1px solid #EF9F27; }
+  .chip-other { background: #F1EFE8; color: #5F5E5A; border: 1px solid #B4B2A9; }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 0;
+    width: 1.5px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 2.5rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -28px; top: 6px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--teal); border: 2px solid var(--white);
+    box-shadow: 0 0 0 2px var(--teal);
+  }
+  .tl-meta { display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .tl-company { font-weight: 500; color: var(--teal); font-size: 13px; }
+  .tl-date { font-size: 12px; color: var(--gray); margin-left: auto; }
+  .tl-role { font-size: 1rem; font-weight: 500; color: var(--dark); margin-bottom: 6px; }
+  .tl-desc { font-size: 14px; color: var(--gray); line-height: 1.75; }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tl-tag {
+    font-size: 11px; padding: 2px 9px; border-radius: 10px;
+    background: var(--teal-light); color: var(--teal);
+  }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .proj-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  section:nth-child(even) .proj-card { background: var(--light); }
+  .proj-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.07); }
+  .proj-type {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.5px;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 10px;
+    display: inline-block; margin-bottom: 12px;
+  }
+  .proj-ai { background: var(--teal-light); color: var(--teal); }
+  .proj-web { background: #E6F1FB; color: #185FA5; }
+  .proj-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 8px; color: var(--dark); }
+  .proj-card p { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+  /* CERTS */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+  .cert-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.25rem 1.5rem;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .cert-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .cert-card h4 { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+  .cert-card p { font-size: 12px; color: var(--gray); }
+  .badge {
+    margin-left: auto; font-size: 10px; font-weight: 500;
+    padding: 3px 9px; border-radius: 10px; white-space: nowrap;
+  }
+  .badge-done { background: var(--teal-light); color: var(--teal); }
+  .badge-wip { background: #FAEEDA; color: #854F0B; }
+
+  /* CONTACT */
+  .contact-wrap { display: flex; gap: 2rem; flex-wrap: wrap; align-items: flex-start; }
+  .contact-info { flex: 1; min-width: 260px; }
+  .contact-info p { color: var(--gray); margin-bottom: 1.5rem; font-weight: 300; }
+  .contact-links { display: flex; flex-direction: column; gap: 10px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--dark);
+    font-size: 14px; font-weight: 500;
+    padding: 10px 14px; border: 1px solid var(--border);
+    border-radius: 10px; transition: all 0.2s;
+    background: var(--white);
+  }
+  .contact-link:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-light); }
+  .contact-link .link-icon { font-size: 16px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark); color: #aaa;
+    text-align: center; padding: 1.8rem 5vw;
+    font-size: 13px;
+  }
+  footer span { color: var(--teal-mid); }
+
+  @media (max-width: 600px) {
+    .hero-stats { gap: 1.5rem; }
+    .nav-links { display: none; }
+  }
+</style>
 </head>
 <body>
-    <h1>Welcome</h1>
-    <p>This is your new website.</p>
+
+<nav>
+  <div class="nav-logo">Priyadharshini C G</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-inner">
+    <div class="hero-tag">Available for new opportunities</div>
+    <h1>Generative AI<br/>Content Developer<br/>&amp; <span>Webflow Engineer</span></h1>
+    <p class="hero-sub">Building GenAI prompt frameworks, Content Playbooks, and K–12 curriculum-aligned educational content at CK-12 Foundation — an AI-first EdTech platform with 265M+ users worldwide.</p>
+    <div class="hero-cta">
+      <a href="mailto:cgpriyadharshinigopi@gmail.com" class="btn-primary">Get in touch</a>
+      <a href="https://www.linkedin.com/in/priyadharshini-c-g" target="_blank" class="btn-secondary">LinkedIn Profile</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">265M+</div>
+        <div class="stat-label">Platform Users (CK-12)</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">AI Certifications</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I bring</div>
+  <h2>Skills &amp; Expertise</h2>
+  <div class="skills-wrap">
+    <span class="skill-chip chip-ai">Prompt Engineering</span>
+    <span class="skill-chip chip-ai">GenAI Content Playbooks</span>
+    <span class="skill-chip chip-ai">K–12 Content Development</span>
+    <span class="skill-chip chip-ai">AI Content QA &amp; Validation</span>
+    <span class="skill-chip chip-ai">Claude · ChatGPT · Gemini</span>
+    <span class="skill-chip chip-ai">Curriculum Alignment</span>
+    <span class="skill-chip chip-web">Webflow</span>
+    <span class="skill-chip chip-web">HTML5 &amp; CSS3</span>
+    <span class="skill-chip chip-web">JavaScript</span>
+    <span class="skill-chip chip-web">React</span>
+    <span class="skill-chip chip-web">Bootstrap</span>
+    <span class="skill-chip chip-web">PHP</span>
+    <span class="skill-chip chip-design">Figma</span>
+    <span class="skill-chip chip-design">UI/UX Design</span>
+    <span class="skill-chip chip-design">Design-to-Dev Workflow</span>
+    <span class="skill-chip chip-other">SEO Optimization</span>
+    <span class="skill-chip chip-other">GitHub</span>
+    <span class="skill-chip chip-other">WordPress</span>
+    <span class="skill-chip chip-other">Google Workspace</span>
+    <span class="skill-chip chip-other">CMS Management</span>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Where I've worked</div>
+  <h2>Experience</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-meta">
+        <span class="tl-company">CK-12 Foundation</span>
+        <span class="tl-date">Aug 2023 – Present</span>
+      </div>
+      <div class="tl-role">Webflow Engineer &amp; GenAI Content Developer</div>
+      <div class="tl-desc">Built GenAI prompt frameworks and reusable Content Playbooks (templates, rubrics, QC checklists) for K–12 Science &amp; Math content generation at scale. Validated AI-generated content for grade-level accuracy and curriculum alignment. Developed responsive Webflow pages for a 265M+ user platform, migrated content preserving SEO structure, and prototyped AI-powered interactive learning experiences. Collaborated with engineers, designers, and SMEs to integrate content into production pipelines.</div>
+      <div class="tl-tags">
+        <span class="tl-tag">Prompt Engineering</span>
+        <span class="tl-tag">GenAI Playbooks</span>
+        <span class="tl-tag">Webflow</span>
+        <span class="tl-tag">Figma</span>
+        <span class="tl-tag">React</span>
+        <span class="tl-tag">K–12 EdTech</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-meta">
+        <span class="tl-company">Shoppre.com / Inditrunk.com</span>
+        <span class="tl-date">Jul 2022 – May 2023</span>
+      </div>
+      <div class="tl-role">UI Developer / UI Developer Intern</div>
+      <div class="tl-desc">Developed responsive, mobile-first web interfaces using HTML, CSS, Bootstrap, and PHP. Integrated WordPress with third-party APIs and plugins. Enhanced existing codebase to improve efficiency and delivered innovative solutions meeting project requirements.</div>
+      <div class="tl-tags">
+        <span class="tl-tag">HTML &amp; CSS</span>
+        <span class="tl-tag">Bootstrap</span>
+        <span class="tl-tag">PHP</span>
+        <span class="tl-tag">WordPress</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">What I've built</div>
+  <h2>Key Projects</h2>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <span class="proj-type proj-ai">GenAI</span>
+      <h3>GenAI Content Playbook — CK-12</h3>
+      <p>Designed reusable prompt frameworks, QC rubrics, and content blueprints for generating scalable K–12 Science &amp; Math content aligned to Indian curricula on the Flexi AI Tutor platform.</p>
+    </div>
+
+    <div class="proj-card">
+      <span class="proj-type proj-ai">GenAI + Web</span>
+      <h3>Flexi AI Tutor Integration</h3>
+      <p>Prototyped Webflow pages embedding AI-powered educational features for CK-12's next-gen tutor platform. Collaborated with engineers to align content delivery with platform architecture.</p>
+    </div>
+
+    <div class="proj-card">
+      <span class="proj-type proj-web">Webflow</span>
+      <h3>CK-12 Webflow Template System</h3>
+      <p>Built and maintained scalable Webflow templates for CK-12's continuous product updates, reducing time-to-market for new features and enabling global multi-language accessibility.</p>
+    </div>
+
+    <div class="proj-card">
+      <span class="proj-type proj-web">Figma + Webflow</span>
+      <h3>Figma-to-Webflow Design Pipeline</h3>
+      <p>End-to-end UI design and handoff system — mockups in Figma to production Webflow — streamlining design-to-development handoff and ensuring consistent branding across platforms.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-label">Credentials</div>
+  <h2>Certifications</h2>
+  <div class="certs-grid">
+
+    <div class="cert-card">
+      <div class="cert-icon" style="background:#E1F5EE;">🟢</div>
+      <div>
+        <h4>Generative AI Fundamentals</h4>
+        <p>Google Cloud</p>
+      </div>
+      <span class="badge badge-done">Completed ✓</span>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon" style="background:#E6F1FB;">📘</div>
+      <div>
+        <h4>Prompt Engineering for Developers</h4>
+        <p>DeepLearning.AI</p>
+      </div>
+      <span class="badge badge-wip">In Progress</span>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon" style="background:#E1F5EE;">🌐</div>
+      <div>
+        <h4>Webflow Expert Certification</h4>
+        <p>Webflow University</p>
+      </div>
+      <span class="badge badge-done">Completed ✓</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Let's connect</div>
+  <h2>Get In Touch</h2>
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <p>I'm actively looking for GenAI Content Developer and Prompt Engineering roles in MNCs and product companies. Open to Bangalore, remote, and hybrid opportunities.</p>
+      <div class="contact-links">
+        <a href="mailto:cgpriyadharshinigopi@gmail.com" class="contact-link">
+          <span class="link-icon">✉️</span> cgpriyadharshinigopi@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/priyadharshini-c-g" target="_blank" class="contact-link">
+          <span class="link-icon">💼</span> linkedin.com/in/priyadharshini-c-g
+        </a>
+        <a href="tel:+916379332094" class="contact-link">
+          <span class="link-icon">📞</span> +91 6379332094
+        </a>
+        <a class="contact-link" style="cursor:default;">
+          <span class="link-icon">📍</span> Madurai, Tamil Nadu, India
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed &amp; built by <span>Priyadharshini C G</span> · Madurai, India · 2025</p>
+</footer>
+
 </body>
 </html>
