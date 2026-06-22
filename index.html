@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Priyadharshini C G — Generate</title>
+<title>Priyadharshini C G — Priya.OS</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -261,7 +261,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--mono);overflow:hi
       <div class="mb-item">Window</div>
     </div>
     <div class="mb-right">
-      <div class="mb-open" id="mbOpen">Open to work</div>
+      <div class="mb-open" id="mbOpen">✦ Available</div>
       <div class="mb-clock" id="mbClock">--:--</div>
     </div>
   </div>
@@ -294,7 +294,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--mono);overflow:hi
 
   <!-- TASKBAR -->
   <div class="taskbar">
-    <div class="tb-icon" title="About" onclick="openWin('about')">👩‍💻</div>
+    <div class="tb-icon" title="About" id="tb-about" onclick="openWin('about')">👩‍💻</div>
     <div class="tb-icon" title="Resume" onclick="openWin('resume')">📄</div>
     <div class="tb-icon" title="Projects" onclick="openWin('projects')">🚀</div>
     <div class="tb-icon" title="Skills" onclick="openWin('skills')">⚡</div>
@@ -318,7 +318,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--mono);overflow:hi
     <div class="win-body">
       <div class="about-win-body">
         <div class="aw-name">Priya<strong>dharshini</strong> C G</div>
-        <div class="aw-title">GenAI Content Developer · Prompt Engineer · Webflow Engineer</div>
+        <div class="aw-title">Generative AI Learning Content Developer · Prompt Engineer · Webflow Engineer</div>
         <div class="aw-desc">3 years at the intersection of AI, content, and the web. Currently at CK-12 Foundation — building the prompt frameworks and content systems that power AI-generated K–12 education for 265M+ students worldwide.</div>
         <div class="aw-stats">
           <div><div class="aw-stat-n">3+</div><div class="aw-stat-l">Years Exp</div></div>
@@ -445,6 +445,38 @@ body{background:var(--bg);color:var(--white);font-family:var(--mono);overflow:hi
     </div>
   </div>
 
+
+  <!-- GREETING WINDOW -->
+  <div class="win open focused" id="win-greeting" style="width:380px;height:auto;top:50%;left:50%;transform:translate(-50%,-50%);z-index:400;">
+    <div class="win-chrome" id="wc-greeting">
+      <div class="win-dots"><div class="wd r" onclick="closeGreeting()"></div><div class="wd y"></div><div class="wd g"></div></div>
+      <div class="win-title">welcome.sh</div>
+    </div>
+    <div class="win-body" style="overflow:hidden;">
+      <div style="padding:1.8rem;">
+        <div style="font-size:.58rem;letter-spacing:.12em;color:var(--mint);margin-bottom:.8rem;">// Priya.OS v1.0 — booted successfully</div>
+        <div style="font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--white);line-height:1.15;margin-bottom:.8rem;">
+          Hello, Recruiter. <span style="color:var(--gold);font-style:italic;">Welcome.</span>
+        </div>
+        <div style="font-size:.68rem;line-height:1.8;color:var(--muted);margin-bottom:1.2rem;">
+          You just generated my portfolio from a prompt.<br/>
+          Now you're inside it — an OS built entirely by one person.<br/><br/>
+          <span style="color:var(--white);">Double-click any icon</span> on the desktop to explore.<br/>
+          <span style="color:var(--mint);">💬 Chat.ai</span> — ask me anything, I'll answer in real time.<br/>
+          <span style="color:var(--white);">📄 Resume.pdf</span> — everything on one screen.<br/>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem;">
+          <span style="font-size:.52rem;padding:.2rem .6rem;border:1px solid var(--mint-border);color:var(--mint);">Madurai, India</span>
+          <span style="font-size:.52rem;padding:.2rem .6rem;border:1px solid var(--border);color:var(--muted);">Chennai · Bangalore · Remote</span>
+          <span style="font-size:.52rem;padding:.2rem .6rem;border:1px solid var(--border);color:var(--muted);">Hybrid welcome</span>
+        </div>
+        <button onclick="closeGreeting()" style="width:100%;padding:.65rem;background:var(--mint);color:#07070f;font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:.1em;border:none;cursor:none;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);">
+          Enter Portfolio →
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- NOTIFY -->
   <div class="notify" id="notify"><strong id="notifyTitle">Welcome</strong><span id="notifyMsg">Double-click any icon to open.</span></div>
 
@@ -470,7 +502,7 @@ const PD=[
   {t:'co',v:'// portfolio.prompt — Priyadharshini C G'},
   {t:'co',v:'// Madurai, Tamil Nadu, India · 2025'},
   {t:'bl'},{t:'la',v:'ROLE:'},
-  {t:'va',v:'  GenAI Content Developer, Prompt Engineer & Webflow Engineer'},
+  {t:'va',v:'  Generative AI Learning Content Developer · Prompt Engineer · Webflow Engineer'},
   {t:'va',v:'  with 3 years of professional experience.'},
   {t:'bl'},{t:'la',v:'CONTEXT:'},
   {t:'va',v:'  CK-12 Foundation — AI-first EdTech platform, 265M+ users worldwide.'},
@@ -567,10 +599,18 @@ function startGen(){
 function showOS(){
   document.getElementById('ph2').style.display='none';
   document.getElementById('ph3').classList.add('show');
-  setTimeout(()=>{
-    openWin('about');
-    setTimeout(()=>showNotify('Priya.OS Loaded','Double-click any icon to open a window.'),600);
-  },400);
+  // greeting auto-shows (it's already .open in HTML)
+  // make greeting draggable
+  const g=document.getElementById('win-greeting');
+  const gh=document.getElementById('wc-greeting');
+  let ox,oy,ix,iy;
+  gh.addEventListener('mousedown',e=>{
+    if(e.button!==0)return;
+    ox=g.offsetLeft;oy=g.offsetTop;ix=e.clientX;iy=e.clientY;
+    function move(e){g.style.left=(ox+e.clientX-ix)+'px';g.style.top=(oy+e.clientY-iy)+'px';g.style.transform='none';}
+    function up(){document.removeEventListener('mousemove',move);document.removeEventListener('mouseup',up);}
+    document.addEventListener('mousemove',move);document.addEventListener('mouseup',up);
+  });
 }
 
 // ── WINDOW MANAGEMENT ─────────────────────────────────
@@ -583,14 +623,25 @@ const defaultPos={
 
 function openWin(name){
   const w=document.getElementById(wins[name]);
+  if(w.classList.contains('open')){w.style.zIndex=++zTop;w.classList.add('focused');return;}
+  w.style.opacity='0';w.style.transform='scale(0.94) translateY(8px)';
   w.classList.add('open','focused');
+  w.style.transition='opacity .22s,transform .22s';
+  setTimeout(()=>{w.style.opacity='1';w.style.transform='scale(1) translateY(0)';},10);
+  setTimeout(()=>{w.style.transition='';},300);
   w.style.zIndex=++zTop;
   document.querySelectorAll('.win').forEach(ww=>{if(ww!==w)ww.classList.remove('focused');});
   makeDraggable(w,document.getElementById('wc-'+name));
   if(name==='terminal') setTimeout(()=>document.getElementById('termInput').focus(),100);
 }
 function closeWin(name){
-  document.getElementById(wins[name]).classList.remove('open','focused');
+  const w=document.getElementById(wins[name]);
+  w.style.transition='opacity .18s,transform .18s';
+  w.style.opacity='0';w.style.transform='scale(0.95)';
+  setTimeout(()=>{
+    w.classList.remove('open','focused');
+    w.style.opacity='';w.style.transform='';w.style.transition='';
+  },180);
 }
 
 function makeDraggable(el,handle){
@@ -609,6 +660,14 @@ function makeDraggable(el,handle){
   });
 }
 
+// ── GREETING ──────────────────────────────────────────
+function closeGreeting(){
+  const g=document.getElementById('win-greeting');
+  g.style.transition='opacity .22s,transform .22s';
+  g.style.opacity='0';g.style.transform='translate(-50%,-50%) scale(0.95)';
+  setTimeout(()=>{g.style.display='none';showNotify('Priya.OS','Explore freely — double-click any icon.');},220);
+}
+
 // ── NOTIFY ────────────────────────────────────────────
 function showNotify(title,msg){
   const n=document.getElementById('notify');
@@ -621,7 +680,7 @@ function showNotify(title,msg){
 // ── TERMINAL AI CHAT — Concept 1 ─────────────────────
 const aiResponses={
   'what do you do':
-    "I'm a GenAI Content Developer and Webflow Engineer at CK-12 Foundation. My work sits right at the intersection of AI and education — I design the prompt frameworks that generate K–12 content, set quality standards, and make sure AI outputs are accurate before they reach 265M+ students.",
+    "I'm a Generative AI Learning Content Developer and Webflow Engineer at CK-12 Foundation. My work sits right at the intersection of AI and education — I design the prompt frameworks that generate K–12 content, set quality standards, and make sure AI outputs are accurate before they reach 265M+ students.",
   'tell me about your genai work':
     "I built CK-12's Content Playbook from scratch — prompt templates, a 5-point QC rubric, content blueprints, and a validation checklist. It's now the internal standard for all AI content generation on the Flexi AI Tutor platform. I also validate and refine AI outputs for grade-level accuracy and curriculum alignment.",
   'tell me about your webflow work':
@@ -640,6 +699,18 @@ const aiResponses={
     "Google Cloud: Generative AI Fundamentals ✓ — completed. DeepLearning.AI: Prompt Engineering for Developers — in progress.",
   'hire priya':
     "Smart call. 📧 cgpriyadharshinigopi@gmail.com — let's talk. Also on LinkedIn: linkedin.com/in/priyadharshini-c-g",
+  'what is your notice period':
+    "I'm available to join immediately. No notice period constraints.",
+  'tell me about yourself':
+    "I'm Priyadharshini — a Generative AI Learning Content Developer, Prompt Engineer, and Webflow Engineer based in Madurai, India. I've spent 3 years building AI content systems and web interfaces. Currently at CK-12 Foundation, I design the prompt frameworks that generate educational content for 265M+ students globally.",
+  'what is your salary expectation':
+    "I'm open to discussing compensation based on the role and company. Feel free to reach me at cgpriyadharshinigopi@gmail.com to talk specifics.",
+  'do you know python':
+    "I have foundational knowledge of Python — enough to work with AI APIs, understand prompt chaining logic, and follow along with engineering discussions. I'm actively building deeper skills in Python as part of my GenAI learning roadmap.",
+  'hello':
+    "Hi there! I'm Priyadharshini's portfolio AI. Ask me anything about her work, skills, or experience — or just type 'hire priya' if you've already made up your mind 😄",
+  'hi':
+    "Hey! Welcome to Priya.OS. I'm an AI version of Priyadharshini — ask me anything about her GenAI work, Webflow projects, or background. Try: 'What do you do?' or 'Why should I hire you?'",
 };
 
 const fallbacks=[
